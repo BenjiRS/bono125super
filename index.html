@@ -78,7 +78,6 @@
       0%,100% { transform: scale(1); }
       50%    { transform: scale(1.03); }
     }
-    /* estrellas y opinión */
     .stars {
       margin-bottom:.5rem;
     }
@@ -91,7 +90,6 @@
       font-size:.9rem;
       margin-bottom:1.5rem;
     }
-    /* barra de features fuera de la card */
     .features-bar {
       max-width:400px;
       width:100%;
@@ -122,12 +120,11 @@
 </head>
 <body>
 
-  <!-- Tarjeta principal -->
   <div class="card">
     <h1>¡Consigue tu bono de supermercado de 250 € YA!</h1>
     <div class="separator"></div>
 
-    <a href="https://tu-enlace-de-registro.com" class="btn-primary">¡QUIERO MI BONO!</a>
+    <a href="go.html" class="btn-primary">¡QUIERO MI BONO!</a>
 
     <p class="small">
       Sólo por registrarte, sin tarjeta ni compras.<br>
@@ -136,7 +133,6 @@
 
     <div id="countdown" class="countdown">03:00:00</div>
 
-    <!-- 5 estrellas encima del texto de opinión -->
     <div class="stars">
       <i class="fas fa-star"></i><i class="fas fa-star"></i>
       <i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -148,7 +144,6 @@
     </p>
   </div>
 
-  <!-- Barra de 3 opciones con checks -->
   <div class="features-bar">
     <div class="features-grid">
       <div class="item">
@@ -166,9 +161,7 @@
     </div>
   </div>
 
-
   <script>
-    // Contador regresivo de 3 horas
     const target = new Date(Date.now() + 3*3600*1000);
     function updateTimer() {
       const now = new Date();
