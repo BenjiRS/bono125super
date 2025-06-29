@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Consigue tu bono de 250€ YA!</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f5f0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 2em;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 400px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.8em;
+      color: #1d1d42;
+    }
+    .button {
+      background: #ea8326;
+      color: white;
+      font-weight: bold;
+      padding: 0.75em 1.5em;
+      border-radius: 10px;
+      text-decoration: none;
+      display: inline-block;
+      margin: 1em 0;
+      font-size: 1em;
+    }
+    p.small {
+      font-size: 0.9em;
+      color: #333;
+    }
+    #timer {
+      font-size: 1.8em;
+      color: #1d1d42;
+      margin: 0.8em 0;
+    }
+    .stars {
+      color: gold;
+      font-size: 1.2em;
+      margin: 0.5em 0;
+    }
+    .features {
+      margin-top: 1.5em;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.8em;
+      font-size: 0.9em;
+      color: #222;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      justify-content: center;
+    }
+    .feature-item svg {
+      width: 18px;
+      height: 18px;
+      fill: #6c2bd9;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>¡Consigue tu bono de supermercado de <br>250 € YA!</h1>
+    <a class="button" href="https://filestrue.com/show.php?l=0&u=2414171&id=63695" target="_blank"> ¡QUIERO MI BONO! </a>
+    <p class="small">Solo por registrarte, sin tarjeta ni compras.<br>Oferta válida en toda España.</p>
+
+    <div id="timer">00:00:00</div>
+
+    <div class="stars">
+      ★ ★ ★ ★ ★
+    </div>
+    <p class="small">¡Más de 1.000 usuarios ya han reclamado su bono con éxito!<br>4.8/5 satisfacción</p>
+
+    <div class="features">
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24"><path d="M20.285 6.709l-11.024 11.024-5.545-5.546 1.414-1.414 4.131 4.132 9.61-9.61z"/></svg>
+        <span>Sólo e-mail</span>
+      </div>
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24"><path d="M20.285 6.709l-11.024 11.024-5.545-5.546 1.414-1.414 4.131 4.132 9.61-9.61z"/></svg>
+        <span>Bono de 250€ directo</span>
+      </div>
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24"><path d="M20.285 6.709l-11.024 11.024-5.545-5.546 1.414-1.414 4.131 4.132 9.61-9.61z"/></svg>
+        <span>Sin tarjeta ni pagos ocultos</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Temporizador 3 horas desde el primer acceso
+    const STORAGE_KEY = "promo_timer_3h";
+    const timerElement = document.getElementById("timer");
+    let startTime = localStorage.getItem(STORAGE_KEY);
+
+    if (!startTime) {
+      startTime = Date.now();
+      localStorage.setItem(STORAGE_KEY, startTime);
+    } else {
+      startTime = parseInt(startTime);
+    }
+
+    const endTime = startTime + 3 * 60 * 60 * 1000; // 3 horas
+
+    function updateTimer() {
+      const now = Date.now();
+      const distance = endTime - now;
+
+      if (distance <= 0) {
+        timerElement.textContent = "00:00:00";
+        return;
+      }
+
+      const hours = String(Math.floor(distance / (1000 * 60 * 60))).padStart(2, '0');
+      const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+      const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+
+      timerElement.textContent = `${hours}:${minutes}:${seconds}`;
+      setTimeout(updateTimer, 1000);
+    }
+
+    updateTimer();
+  </script>
+</body>
+</html>
